@@ -216,7 +216,11 @@ fn main() -> std::io::Result<()>{
 
     tokenize(filestring, &mut tokens);
     for ts in tokens {
-        println!("{:?}", ts.t_value);
+        match ts.t_value {
+            TokenValue::Number(value) => println!("Number: {value}"),
+            TokenValue::Punct(value) => println!("Punctuation: {:?}", value),
+            TokenValue::Symbol(value) => println!("Symbol: \"{value}\""),
+        }
     }
     Ok(())
 }
